@@ -6,7 +6,8 @@
     },
     "fund-nation2-frontend": {
       "dependencies": [
-        "fund-nation2-backend"
+        "fund-nation2-backend",
+        "internet_identity"
       ],
       "source": [
         "src/fund-nation2-frontend/dist"
@@ -24,7 +25,30 @@
       },
       "type": "custom",
       "wasm": "https://github.com/dfinity/internet-identity/releases/latest/download/internet_identity_dev.wasm.gz"
+    },
+    "ledger": {
+      "type": "custom",
+      "candid": "https://raw.githubusercontent.com/dfinity/ic/aba60ffbc46acfc8990bf4d5685c1360bd7026b9/rs/ledger_suite/icp/ledger.did",
+      "wasm": "https://download.dfinity.systems/ic/aba60ffbc46acfc8990bf4d5685c1360bd7026b9/canisters/ledger-canister.wasm.gz",
+      "remote": {
+        "id": {
+          "ic": "ryjl3-tyaaa-aaaaa-aaaba-cai"
+        }
+      }
+    },
+    
+    "ckbtc_ledger": {
+      "type": "custom",
+      "candid": "https://raw.githubusercontent.com/dfinity/ic/95787355499f3be929f2ab302ed44cdad7c64061/rs/rosetta-api/icrc1/ledger/ledger.did",
+      "wasm": "https://download.dfinity.systems/ic/95787355499f3be929f2ab302ed44cdad7c64061/canisters/ic-icrc1-ledger.wasm.gz",
+      "remote": {
+        "id": {
+          "ic": "mxzaz-hqaaa-aaaar-qaada-cai"
+        }
+      }
     }
+      
+    
   },
   "defaults": {
     "bitcoin": {
@@ -36,7 +60,7 @@
     },
     "build": {
       "args": "",
-      "packtool": ""
+      "packtool": "mops sources"
     }
   },
   "output_env_file": ".env",
