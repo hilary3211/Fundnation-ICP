@@ -5,14 +5,14 @@ import {  idlFactory, canisterId } from "declarations/fund-nation2-backend";
 import { useNavigate } from "react-router-dom";
 import { AuthClient } from "@dfinity/auth-client";
 import { Actor, HttpAgent } from "@dfinity/agent";
-
+import { FaFacebook, FaTwitter, FaLinkedin, FaWhatsapp, FaCopy } from "react-icons/fa";
 
 const Camprof = () => {
   const [proncipal, setproncipal] = useState(null);
   const [proncipal2, setproncipal2] = useState(null);
   const [funding , setfunding] = useState('1')
   const [words, setwords] = useState('')
-  const [loading, setLoading] = useState(false); 
+  const [loading, setLoading] = useState(true); 
   const [isdonate , setisdonate] = useState(false)
   const [dons , setdons] = useState([])
   function getTextAfterHyphen(str) {
@@ -25,6 +25,13 @@ const Camprof = () => {
     return str; 
    
   }
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const shareUrl = typeof window !== "undefined" ? window.location.href : "";
+
+  const handleCopyLink = () => {
+    navigator.clipboard.writeText(shareUrl);
+    alert("Link copied to clipboard!");
+  };
 
   const navigate = useNavigate()
 
@@ -97,6 +104,7 @@ const Camprof = () => {
            //console.log(aa[0].donations)
            actor.convertDonationsToArray(aa[0].donations).then((data) => {
             setactivities(data)
+            setLoading(false)
 
           //   actor.convertDonationsToArray(aa[0].donations).then((data) => {
           //   setactivities(data)
@@ -222,7 +230,7 @@ const Camprof = () => {
             <div className="flex flex-row justify-between">
                 
             <h1 className="text-3xl font-bold text-gray-800">{projects.title}</h1>
-          <div className="hidden md:flex flex items-center justify-center space-x-2 px-2 py-1" style={{ background: "rgba(132, 204, 22, 0.8)", borderRadius: 10 }}>
+          {/* <button   onClick={() => setIsModalOpen(true)} className="hidden md:flex flex items-center justify-center space-x-2 px-2 py-1" style={{ background: "rgba(132, 204, 22, 0.8)", borderRadius: 10 }}>
           <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
 <path d="M2.66675 8V13.3333C2.66675 13.687 2.80722 14.0261 3.05727 14.2761C3.30732 14.5262 3.64646 14.6667 4.00008 14.6667H12.0001C12.3537 14.6667 12.6928 14.5262 12.9429 14.2761C13.1929 14.0261 13.3334 13.687 13.3334 13.3333V8" stroke="#1F2937" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
 <path d="M10.6666 4.00004L7.99992 1.33337L5.33325 4.00004" stroke="#1F2937" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -230,9 +238,18 @@ const Camprof = () => {
 </svg>
 
   <p className="text-white text-lg " style={{color: "black", fontSize:15}}>Share campaign</p>
-</div>
+</button> */}
 
     </div>
+    <button   onClick={() => setIsModalOpen(true)} className="hidden md:flex flex items-center justify-center space-x-2 px-2 py-1 mt-6" style={{ background: "rgba(132, 204, 22, 0.8)", borderRadius: 10 }}>
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M2.66675 8V13.3333C2.66675 13.687 2.80722 14.0261 3.05727 14.2761C3.30732 14.5262 3.64646 14.6667 4.00008 14.6667H12.0001C12.3537 14.6667 12.6928 14.5262 12.9429 14.2761C13.1929 14.0261 13.3334 13.687 13.3334 13.3333V8" stroke="#1F2937" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M10.6666 4.00004L7.99992 1.33337L5.33325 4.00004" stroke="#1F2937" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M8 1.33337V10" stroke="#1E293B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
+
+  <p className="text-white text-lg " style={{color: "black", fontSize:15}}>Share campaign</p>
+</button>
 
             <p className="text-gray-600 mt-2">{projects.description}</p>
           <img
@@ -337,7 +354,7 @@ const Camprof = () => {
           </li>
         ))}
       </ul>
-      <div className="flex items-center justify-center space-x-2 px-2 py-1" style={{ background: "rgba(132, 204, 22, 0.8)", borderRadius: 10, marginTop: 40 }}>
+      <button   onClick={() => setIsModalOpen(true)} className="w-full flex items-center justify-center space-x-2 px-2 py-1" style={{ background: "rgba(132, 204, 22, 0.8)", borderRadius: 10, marginTop: 40 }}>
           <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
 <path d="M2.66675 8V13.3333C2.66675 13.687 2.80722 14.0261 3.05727 14.2761C3.30732 14.5262 3.64646 14.6667 4.00008 14.6667H12.0001C12.3537 14.6667 12.6928 14.5262 12.9429 14.2761C13.1929 14.0261 13.3334 13.687 13.3334 13.3333V8" stroke="#1F2937" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
 <path d="M10.6666 4.00004L7.99992 1.33337L5.33325 4.00004" stroke="#1F2937" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -345,7 +362,7 @@ const Camprof = () => {
 </svg>
 
   <p className="text-white text-lg " style={{color: "black", fontSize:15}}>Share campaign</p>
-</div>
+</button>
           </div>
 
           {/* Fund This Campaign */}
@@ -376,6 +393,69 @@ const Camprof = () => {
           </div>
         </div>
       </div>
+      {isModalOpen && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
+          <div className="bg-white rounded-lg shadow-lg p-6 w-96">
+            {/* Modal Header */}
+            <div className="flex justify-between items-center mb-4">
+              <h2 className="text-lg font-bold text-gray-800">Share this page</h2>
+              <button
+                onClick={() => setIsModalOpen(false)}
+                className="text-gray-500 hover:text-gray-700"
+              >
+                ✕
+              </button>
+            </div>
+
+            {/* Social Media Links */}
+            <div className="space-y-4">
+              <a
+                href={`https://www.facebook.com/sharer/sharer.php?u=${shareUrl}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center space-x-3 text-blue-600 hover:underline"
+              >
+                <FaFacebook size={20} />
+                <span>Share on Facebook</span>
+              </a>
+              <a
+                href={`https://twitter.com/intent/tweet?url=${shareUrl}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center space-x-3 text-blue-400 hover:underline"
+              >
+                <FaTwitter size={20} />
+                <span>Share on Twitter</span>
+              </a>
+              <a
+                href={`https://www.linkedin.com/shareArticle?url=${shareUrl}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center space-x-3 text-blue-800 hover:underline"
+              >
+                <FaLinkedin size={20} />
+                <span>Share on LinkedIn</span>
+              </a>
+              <a
+                href={`https://wa.me/?text=${encodeURIComponent(shareUrl)}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center space-x-3 text-green-500 hover:underline"
+              >
+                <FaWhatsapp size={20} />
+                <span>Share on WhatsApp</span>
+              </a>
+              <button
+                onClick={handleCopyLink}
+                className="flex items-center space-x-3 text-gray-600 hover:underline"
+              >
+                <FaCopy size={20} />
+                <span>Copy Link</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
       </>
       }
     </div>

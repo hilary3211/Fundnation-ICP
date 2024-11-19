@@ -232,7 +232,7 @@ const CampDashboard = () => {
           canisterId: process.env.CANISTER_ID_FUND_NATION2_BACKEND,
         });
     
-        actor.getProfile(userPrincipal).then((data) => {
+        actor.getProjects(userPrincipal).then((data) => {
          // const aa =  mergeOwnerAndProject(data)
           setprojects(data)
           // console.log(data)

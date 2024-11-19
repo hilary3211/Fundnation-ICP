@@ -9,7 +9,7 @@ import { useNavigate } from "react-router-dom";
 import { AuthClient } from "@dfinity/auth-client";
 import { Actor, HttpAgent } from "@dfinity/agent";
 
-
+import { Circles } from 'react-loader-spinner'
 
 
 
@@ -255,18 +255,7 @@ const getFilteredProjects = () => {
       </div>
 
 
-      {/* <div className="flex items-center space-x-4">
-        <div className="flex space-x-2" style={{fontWeight: 600, fontSize: 13}}>
-          <button className="px-4 py-2 bg-white border border-gray-300 text-gray-700 rounded-md">
-            ↑ Price
-          </button>
-          <button className="px-4 py-2 bg-white border border-gray-300 text-gray-700 rounded-md">
-            ↓ Date
-          </button>
-        </div>
-
-      </div> */}
-
+    
 
      
     </div>
@@ -316,19 +305,6 @@ const getFilteredProjects = () => {
             <h3 className="mt-2 font-semibold text-lg">{project.title}</h3>
             <p className="text-sm text-gray-600">{project.description}</p>
             
-            {/* {project.projecttype === "Petition" ?  <div className="flex justify-between items-center mt-4">
-              <p className="flex items-center space-x-2 px-4 py-2"style={{color:  "black", marginLeft: -15, fontWeight: 600}}> <span role="img" aria-label="petition">
-    <img src="/assets/sign.png" alt="Petition Icon" className="w-5 h-5" />
-  </span><span>{parseInt(project.goal)/100000000} Signatures </span></p>
-              <p className="text-sm text-gray-600">{(parseInt(project.raised) / parseInt(project.goal)) * 100}%</p>
-            </div>: 
-             <div className="flex justify-between items-center mt-4">
-             <p className="flex items-center space-x-2 px-4 py-2"style={{color:  "black", marginLeft: -15, fontWeight: 600}}> <span role="img" aria-label="petition">
-   <img src="/assets/gift.svg" alt="Petition Icon" className="w-5 h-5" />
- </span><span>{parseInt(project.goal)/ 100000000} {'iCP' in project.token[0] ? "ICP" : "ckBTC"}</span></p>
-             <p className="text-sm text-gray-600">{(parseInt(project.raised) / parseInt(project.goal)) * 100}%</p>
-           </div>
-            } */}
             {project.projecttype === "Petition" ? (
   <div className="flex justify-between items-center mt-4">
     <p 
@@ -390,3 +366,6 @@ const getFilteredProjects = () => {
 };
 
 export default Explore;
+
+
+
